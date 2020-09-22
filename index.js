@@ -4,7 +4,6 @@ const cors = require("cors");
 const stripe = require("stripe")("sk_test_51HTfqYCBzNNFVvGbjItGHwLut80pC8zW1J9hSnAl5OhSHTsy5yxnF6wHE0U7GMlws4heh83VtqhkEkAUzXScJ7YX00WpdXDRfx")
 
 const app = express()
-const port = process.env.PORT || 9000
 app.use(cors({origin:true}))
 app.use(express.json())
 
@@ -21,5 +20,4 @@ app.post("/payments/create", async (req,res)=>{
         clientSecret: paymentIntent.client_secret
     })
 })
-app.listen(port, "0.0.0.0", ()=>console.log(`app is running on ${port}`))
 exports.api = functions.https.onRequest(app)
